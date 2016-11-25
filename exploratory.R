@@ -1,3 +1,4 @@
+library(reshape2)
 library(plyr)
 library(ggplot2)
 library(MASS)
@@ -48,7 +49,7 @@ count_total <- data.frame(cbind(n = as.numeric(as.character(count_total_temp$num
 
 count_winners[,1] = as.numeric(as.character(count_winners[,1]))
 
-names(count_total)<-c("Team","Total")
+names(count_total)<-c("Team","Total_games")
 
 all_counts <- join(count_total, count_winners, by='Team')
 all_counts$Proportion = all_counts$Winner/all_counts$Total
@@ -63,5 +64,27 @@ goals_scored = data.frame(cbind(aggregate(results$home_team_goal, by=list(result
 goals_scored$Group.1.1 <- NULL
 names(goals_scored) <- c('Team','Home_goals','Away_goals')
 
+goals_scored$Total_goals = goals_scored$Home_goals + goals_scored$Away_goals
+
+goals_scored[order(goals_scored$Total_goals, decreasing = T),][1:10,]
+
+goals_wins_df = join(goals_scored, all_counts, by = 'Team')
+
+temp_df = goals_wins_df[order(goals_wins_df$Proportion, decreasing = T),][1:15,]
+temp_df$Proportion_home_goals = temp_df$Home_goals/temp_df$Total_goals
+temp_df$Proportion_away_goals = temp_df$Away_goals/temp_df$Total_goals
+temp_df
+
+prop_df = melt(temp_df, id.vars='Team')[91:120,]
+ggplot(prop_df, aes(x = factor(Team), y = value, fill = variable)) + 
+  geom_bar(stat = "identity", width=0.75) + 
+  theme(axis.text.x = element_text(angle = 75, hjust = 1)) +
+  ggtitle("Proportion of goals that are home vs away") + ylab("Proportion of goals") + xlab("Team")
+
+prop_df = melt(temp_df, id.vars='Team')[1:30,]
+ggplot(prop_df, aes(x = factor(Team), y = value, fill = variable)) + 
+  geom_bar(position = 'dodge', stat = "identity", width=0.75) + 
+  theme(axis.text.x = element_text(angle = 75, hjust = 1)) +
+  ggtitle("Home vs Away goals by count") + ylab("Number of goals") + xlab("Team")
 
 
