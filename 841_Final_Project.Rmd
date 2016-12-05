@@ -65,13 +65,13 @@ A random matchup between 5 teams results in the following probabilities.
 \centering
 \begin{tabular}{rrrr}
   \hline
- & Top Teams & Estimate & Bottom Teams \\ 
+ & Team i & Team j & P[i > j] \\ 
   \hline
-1 & 9847.00 & 6631 & 0.85 \\ 
-  2 & 9773.00 & 9839 & 0.34 \\ 
-  3 & 8639.00 & 8526 & 0.56  \\ 
-  4 & 8634.00 & 10218 & 0.71  \\ 
-  5 & 0.00 & 8525 & 0.15 \\ 
+ & 9847.00 & 6631 & 0.85 \\ 
+   & 9773.00 & 9839 & 0.34 \\ 
+   & 8639.00 & 8526 & 0.56  \\ 
+   & 8634.00 & 10218 & 0.71  \\ 
+   & 0.00 & 8525 & 0.15 \\ 
    \hline
 \end{tabular}
 \end{table}
