@@ -120,9 +120,9 @@ After running the model, we find that our Home Team effect, $\alpha$ = 0.546508,
 
 The final extension to our standard Bradley-Terry model is to incorporate Team-Specific predictors. Specifically, what attributes to a team contribute significantly to winning a match? It is natural to consider model simplification of the form:
 
-$$\lambda_i = \displaystyle\sum_{r=1}^{p} \beta_rx_{ir} + U_i$$
+$$\lambda_i = \displaystyle\sum_{r=1}^{p} \beta_r x_{ir} + U_i$$
 
-in which ability of each team i is realted to explanatoy variables $x_{i1},...,x_{ip}$, through a linear predictor with coefficients $\beta$ and independent errors $\U_i$. We treated the teams as a random effect so we could focus on the covariates itself. FIFA provided a variety of Team attributes, both Categorical and Continuous. The top and bottom 5 predictors are:
+in which ability of each team i is realted to explanatoy variables $x_{i1},...,x_{ip}$, through a linear predictor with coefficients $\beta$ and independent errors $U_i$. We treated the teams as a random effect so we could focus on the covariates itself. FIFA provided a variety of Team attributes, both Categorical and Continuous. The top and bottom 5 predictors are:
 
 \begin{table}[ht]
 \centering
@@ -140,6 +140,10 @@ in which ability of each team i is realted to explanatoy variables $x_{i1},...,x
 \end{table}
 
 These results are very interesting! We can see certain attributes for a team are significant in the team winning, vs. certain ones that correspond to losing. EXPLANATION OF A FEW.
+
+\section{Accuracy of Model}
+
+
 
 \section{Further Extensions}
 
