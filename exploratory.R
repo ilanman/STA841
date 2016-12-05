@@ -90,3 +90,5 @@ ggplot(prop_df, aes(x = factor(Team), y = value, fill = variable)) +
   ggtitle("Home vs Away goals by count") + ylab("Number of goals") + xlab("Team")
 
 
+setDT(all_counts)
+all_counts[order(-Proportion)]
